@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+         <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
+
+    <title>Mission to Mars</title>
+    </head>
+    <body>
+
+    <div class="jumbotron text-center">
+        <h1>Mission to Mars</h1>
+        <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+    </div>
+
+    <div class="container">
+        <div class = "row">
+            <div class="col-sm-12">
+
+                <h2>Latest Mars News</h2>
+                <h1>{{latest_paragraph_text}}</h1>
+                <p> </p>
+
+            </div>
+        </div>
+
+    </div>
+          
+
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-4">
+                <h3>Column 1</h3>
+                <p>Lorem ipsum dolor..</p>
+              </div>
+              <div class="col-sm-4">
+                <h3>Column 2</h3>
+                <p>Lorem ipsum dolor..</p>
+              </div>
+              <div class="col-sm-4">
+                <h3>Current Weather on Mars</h3> 
+               <h1>{{scrape_mars.Weather}}</h1>
+              </div>
+            </div>
+          </div>
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4">
+          <h3>  </h3>
+          <p>  </p>
+        </div>
+        <div class="col-sm-4">
+          <h3>  </h3>
+          <p>   </p>
+        </div>
+        <div class="col-sm-4">
+          <h3>Mars Facts</h3> 
+          <p>
+            <table border="1" class="dataframe">  
+              <thead><tr style="text-align: right"></tr>
+              <tr><th>Description</th><th>Mars</th></tr>
+              </thead>  
+              <tbody> 
+              <tr><th>Diameter:</th><td>6,779 km</td></tr>
+              <tr><th>Mass:</th><td>6.39 × 10^23 kg</td></tr>  
+              <tr><th>Moons:</th><td>2</td></tr>
+              <tr><th>Distance from Sun:</th><td>227,943,824 km</td><tr>
+              <tr><th>Length of Year:</th><td>687 Earth days</td></tr> <tr><th>Temperature:</th><td>-153 to 20 °C</td></tr> </tbody>
+            </table>  
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script src="../app.py"></script>
+    <script src="../scrape_mars.py') }}"></script>
+    <!-- <script src="app.py"></script> -->
+  </body>
+</html>
+
+
+
