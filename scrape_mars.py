@@ -6,19 +6,19 @@ from splinter import Browser
 import requests
 import pprint
 import datetime as dt
-from mongoengine import *
 import numpy as np
 import pandas as pd
 from pandas import *
 from bson.json_util import dumps
 
-
 def init_browser():
-    # @NOTE: Replace the path with your actual path to the chromedriver
-    executable_path = {'executable_path': 'chromedriver.exe'}
-    return Browser("chrome", **executable_path, headless=False)
-
-
+    # Replace the path with your actual path to the chromedriver
+    executable_path = {'executable_path': 'chromedriver.exe'} 
+    return Browser("chrome", **executable_path, headless=False) 
+    #MAC Users use the below two scripts:
+    # executable_path_mac = {'executable_path': 'chromedriver'}
+    # return Browser("chrome", **executable_path_mac, headless=False)
+    
 def scrape():
     browser = init_browser()
     results = {}
@@ -114,7 +114,6 @@ def scrape():
 
     mars_html = mars.to_html()
 
-
     # MARS HEMISPHERES:
     url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
     browser.visit(url)
@@ -201,7 +200,7 @@ def scrape():
         "facts": mars_html,
         "hemispheres": hemispheres
         };
-    results = mars.insert(mars_data)
+    # results = mars.insert(mars_data)
 
     # if result.acknowledged:
     # print('Mars Collection added' + str(result.inserted_id))
@@ -210,7 +209,7 @@ def scrape():
     # mars = mars.find()
     # for info in mars:
     #     pprint.pprint(info)
-        
+            
     # try:
     #     mars.save()
     # except NotUniqueError:
@@ -221,6 +220,6 @@ def scrape():
     # listings["price"] = soup.find("span", class_="result-price").get_text()
     # listings["hood"] = soup.find("span", class_="result-hood").get_text()
 
-    return results
+    return mars_data
 
 

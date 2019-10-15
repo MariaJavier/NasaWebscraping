@@ -6,17 +6,19 @@ import requests
 from splinter import Browser
 import pprint
 import datetime as dt
-from mongoengine import *
+# from mongoengine import *
 import numpy as np
 import pandas as pd
 from pandas import *
-import scrape_mars
+from scrape_mars import *
+import os
 
 app = Flask(__name__)
 
 # Use flask_pymongo to set up mongo connection
-app.config["MONGO_URI"] = "mongodb://localhost:27017/mars_db"
+app.config["MONGO_URI"] = "mongodb://localhost:27017/mars_db" 
 mongo = PyMongo(app)
+
 
 #################################################
 # Flask Routes
@@ -24,24 +26,28 @@ mongo = PyMongo(app)
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    # fetch our data object (dictionary) from MongoDB here
+    print('Fetching mars data from mongo...')
+    mars_data = mongo.db.mars_collection.find_one()
+
+    print(mars_data)
+
+    return render_template("index.html", results=mars_data)
 
 @app.route("/scrape")
 def scrape_all():
-    results = mongo.mars_db.mars
-    # db = client.mars_db
-    # mars = db.mars
-    # for item in mars.find().limit(10000):
-        
-    #     pprint(item)
-    scrape = scrape_mars.scrape()
-    # results.update({}, mars_data, upsert=True)
+    # perform scrape function -> and capture the results (final dictionary)
+    mars_data = scrape() # outputs {mars data...}
+
+    # connect to mongodb
+    mars_collection = mongo.db.mars_collection
+
+    # insert into mongodb, replacing old data if there is any
+    mars_collection.update({}, mars_data, upsert=True)
     
-    # db.mars.find()  <-- shows all the items in the mars collection
-    # listings = mongo.db.listings
-    # listings_data = scrape_craigslist.scrape()
-    # listings.update({}, listings_data, upsert=True)
-    return redirect("/")
+    # use this to test mars_data dictionary collection displays in html 
+    # return jsonify(mars_data) 
+    return redirect("/", code=302)
 
 if __name__ == "__main__":
     app.run(debug=True)

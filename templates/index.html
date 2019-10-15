@@ -1,93 +1,120 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+  <!-- Required Bootstrap meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+  <!-- MUST be version 3.3.7 in order for the 2x2 grid to work. Do not use 4.3.1 -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+   
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+   
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+   
+  <title>Mission to Mars</title>
+  </head>
 
-    <!-- Bootstrap CSS -->
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-         <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
-
-    <title>Mission to Mars</title>
-    </head>
-    <body>
-
+  <body>
+  <div class="container">
     <div class="jumbotron text-center">
         <h1>Mission to Mars</h1>
         <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
     </div>
+  </div>
 
-    <div class="container">
-        <div class = "row">
-            <div class="col-sm-12">
-
-                <h2>Latest Mars News</h2>
-                <h1>{{latest_paragraph_text}}</h1>
-                <p> </p>
-
-            </div>
-        </div>
-
-    </div>
-          
-
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-4">
-                <h3>Column 1</h3>
-                <p>Lorem ipsum dolor..</p>
-              </div>
-              <div class="col-sm-4">
-                <h3>Column 2</h3>
-                <p>Lorem ipsum dolor..</p>
-              </div>
-              <div class="col-sm-4">
-                <h3>Current Weather on Mars</h3> 
-               <h1>{{scrape_mars.Weather}}</h1>
-              </div>
-            </div>
-          </div>
-
-
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-4">
-          <h3>  </h3>
-          <p>  </p>
-        </div>
-        <div class="col-sm-4">
-          <h3>  </h3>
-          <p>   </p>
-        </div>
-        <div class="col-sm-4">
-          <h3>Mars Facts</h3> 
-          <p>
-            <table border="1" class="dataframe">  
-              <thead><tr style="text-align: right"></tr>
-              <tr><th>Description</th><th>Mars</th></tr>
-              </thead>  
-              <tbody> 
-              <tr><th>Diameter:</th><td>6,779 km</td></tr>
-              <tr><th>Mass:</th><td>6.39 × 10^23 kg</td></tr>  
-              <tr><th>Moons:</th><td>2</td></tr>
-              <tr><th>Distance from Sun:</th><td>227,943,824 km</td><tr>
-              <tr><th>Length of Year:</th><td>687 Earth days</td></tr> <tr><th>Temperature:</th><td>-153 to 20 °C</td></tr> </tbody>
-            </table>  
-          </p>
-        </div>
+  <!-- Latest Mars News -->
+  <div class="container-fluid">
+    <div class = "row">
+      <div class="col-12">
+        <h2>Latest Mars News</h2>
+        <h4>{{results['latest_paragraph_text']}}</h4>
       </div>
     </div>
+  </div>
+       
+  <!-- Featured Mars Image -->
+  <!-- <div class="container-fluid"> -->
+    <div class="row">
+      <div class="col-1">
+        <div class="thumbnail">
+        <h2>Featured Mars Image</h2>
+        <img src="{{results['featured_image']}}" class="img-fluid" alt="Responsive image">
+        <!-- <img src="{{results['featured_image']}}"></div> -->
+        </div> 
+  
+      <!-- </div>
+    </div> -->
 
+    <!-- <div class="container">  -->
+        <div class="col-4">
+          <div class = "panel panel-default">
+            <div class ="panel-body">
+              <h2>Current Weather on Mars</h2> 
+              <h4>{{results['weather']}}</h4>
+            </div>
+          </div>
+        <!-- </div> -->
+    
+    <!-- Mars Facts in the same container as Current Weather on Mars-->
+    <div class="col-4">
+    <h2>Mars Facts</h2> 
+    <p>
+    <h4> 
+    <table border="1" class="dataframe">  
+    <thead><tr style="text-align: right"></tr>
+      <tr><th>Description</th><th>Mars</th></tr>
+      </thead>  
+      <tbody> 
+      <tr><th>Diameter:</th><td>6,779 km</td></tr>
+      <tr><th>Mass:</th><td>6.39 × 10^23 kg</td></tr>  
+      <tr><th>Moons:</th><td>2</td></tr>
+      <tr><th>Distance from Sun:</th><td>227,943,824 km</td><tr>
+      <tr><th>Length of Year:</th><td>687 Earth days</td></tr> <tr><th>Temperature:</th><td>-153 to 20 °C</td></tr> </tbody>
+       </table>  
+    </h4>
+    </p>
+    </div>
+
+    <!--2 ending divs for the Featured Mars Image-->
+      </div>
+    <!-- </div> -->
+
+  </div>
+</div> 
+    
+      <!-- Next div is a row for the Mars hemispheres title and images-->
+      <div class="row" style="margin-top:80px;">
+          <div class="page-header">
+              <h2 class="text-center">Mars Hemispheres</h2>
+          </div> 
+      <!-- Mars hemisphere images w/ titles in a 2x2 grid -->
+          {% for hemisphere in results.hemispheres %}
+          <div class="col-md-6">
+              <div class="thumbnail">
+              <img src="{{hemisphere.img_url}}">
+                <div class="caption">
+              <h2>{{hemisphere.title}}</h2>
+                </div>
+              </div>
+          </div>
+          {% endfor %}
+      </div>
+        
+        </div>
+        </div> 
+    </div>
+    
+    <script src="../static/js/app.js"></script>
+    <script src="../static/css/style.css"></script>
     <script src="../app.py"></script>
-    <script src="../scrape_mars.py') }}"></script>
-    <!-- <script src="app.py"></script> -->
+    <script src="../scrape_mars.py"></script>
+
   </body>
 </html>
 
